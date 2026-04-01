@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Visión Clara" />
+    <meta name="theme-color" content="#020617" />
+    
+    <!-- SEO / Meta Tags -->
+    <title>Visión Clara | Tu Protocolo para una Vista Saludable</title>
+    <meta name="title" content="Visión Clara | Tu Protocolo para una Vista Saludable" />
+    <meta name="description" content="Aprende y practica los mejores ejercicios y rutinas para mejorar tu salud visual de manera natural con el Protocolo Visión Clara." />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://visionclara.app/" />
+    <meta property="og:title" content="Visión Clara | Tu Protocolo para una Vista Saludable" />
+    <meta property="og:description" content="Aprende y practica los mejores ejercicios y rutinas para mejorar tu salud visual de manera natural." />
+    <meta property="og:image" content="/pwa-512x512.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://visionclara.app/" />
+    <meta property="twitter:title" content="Visión Clara | Tu Protocolo para una Vista Saludable" />
+    <meta property="twitter:description" content="Aprende y practica los mejores ejercicios y rutinas para mejorar tu salud visual de manera natural." />
+    <meta property="twitter:image" content="/pwa-512x512.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #020617; /* slate-950 */
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      }
+      /* Prevent elastic bounce on iOS Safari */
+      html, body {
+        height: 100%;
+        overflow: hidden;
+        -webkit-user-select: none;
+        user-select: none;
+      }
+      #root {
+        height: 100%;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      /* Smooth transitions */
+      * {
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-950 text-slate-50">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
