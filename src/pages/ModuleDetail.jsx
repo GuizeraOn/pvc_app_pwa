@@ -18,7 +18,8 @@ import {
   X,
   Download,
   AlertTriangle,
-  Info
+  Info,
+  Book
 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useConfig } from '../context/ConfigContext';
@@ -42,15 +43,15 @@ const ModuleDetail = () => {
 
   const getModuleContent = (id) => {
     switch (id) {
-      case 'INTRO': return { title: '1. Introducción al Protocolo', icon: BookOpen, summary: 'Bienvenido ao viaje hacia una visión restaurada. Conoce las bases biológicas y el compromiso necesario para el éxito.', time: 2, file: '1_Introduccion_al_Protocolo_Vision_Clara.pdf' };
-      case 'ROOT': return { title: '2. Causa Raíz: Obstrucción', icon: Eye, summary: 'Por qué tu visión ha fallado y cómo este protocolo lo resuelve.', time: 5, file: '2_La_Causa_Raiz_Obstruccion_Ocular.pdf' };
+      case 'INTRO': return { title: '1. Introducción al Protocolo', icon: BookOpen, summary: 'Bienvenido al viaje hacia una visión restaurada. Conoce las bases biológicas y el compromiso necesario para el éxito.', time: 2, file: '1_Introduccion_al_Protocolo_Vision_Clara.pdf' };
+      case 'ROOT': return { title: '2. Causa Raíz: Obstrucción', icon: Eye, summary: 'Por qué la medicina tradicional ignora el factor principal del deterioro ocular y cómo este protocolo lo resuelve.', time: 5, file: '2_La_Causa_Raiz_Obstruccion_Ocular.pdf' };
       case 'COMP': return { title: '3. Compuestos Esenciales', icon: FlaskConical, summary: 'La lista exacta y pura de los ingredientes naturales que tu retina necesita para regenerarse.', time: 10, file: '3_Compuestos_Esenciales_para_la_Vision.pdf' };
       case 'DOSIS': return { title: '4. Dosis y Preparación', icon: Sparkles, summary: 'La precisión es vital. Aprende cómo y cuándo combinar los compuestos para máxima absorción.', time: 6, file: '4_Dosis_Exactas_y_Preparacion_Biologica.pdf' };
       case 'RUTINA': return { title: '5. Ritual de 7 Segundos', icon: Clock, summary: 'El paso final y más importante. El ritual nocturno que sella el proceso de restauración diaria.', time: 4, file: '5_El_Ritual_Nocturno_de_7_Segundos.pdf' };
       case 'ERROR': return { title: '6. Errores Comunes', icon: AlertTriangle, summary: 'Lo que debes evitar para no bloquear el proceso de restauración de tu visión.', time: 4, file: '6_Errores_Comunes_que_Bloquean_la_Restauracion.pdf' };
       case 'WEEK': return { title: '7. Cronograma Semanal', icon: Trophy, summary: 'Qué esperar en los próximos 30 días del protocolo y cómo medir tus resultados.', time: 3, file: '7_Cronograma_Semana_a_Semana_30_Dias.pdf' };
       case 'TRUST': return { title: '8. Aviso de Seguridad', icon: Info, summary: 'Recomendaciones importantes para un uso seguro y responsable del protocolo.', time: 2, file: '8_Aviso_Importante_y_Recomendaciones_de_Seguridad.pdf' };
-      default: return { title: 'Contenido do Protocolo', icon: BookOpen, summary: 'Explora la guía detallada para tu saúde ocular.', time: 5, file: '1_Introduccion_al_Protocolo_Vision_Clara.pdf' };
+      default: return { title: 'Contenido del Protocolo', icon: BookOpen, summary: 'Explora la guía detallada para tu salud ocular.', time: 5, file: '1_Introduccion_al_Protocolo_Vision_Clara.pdf' };
     }
   };
 
@@ -121,20 +122,25 @@ const ModuleDetail = () => {
               </div>
               <button 
                 onClick={() => setIsFullScreen(false)}
-                className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 active:scale-90 transition-all"
+                className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 active:scale-90 transition-all font-black"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
-            <div className="flex-1 w-full bg-slate-900 overflow-hidden">
+            <div className="flex-1 w-full bg-slate-900 overflow-hidden relative">
                <object 
                 data={`/pdfs/${content.file}#view=FitH`}
                 type="application/pdf"
                 className="w-full h-full border-0"
               >
-                <div className="flex flex-col items-center justify-center h-full p-10 text-center space-y-4">
-                  <p className="text-slate-100 text-sm font-bold uppercase tracking-widest">Vista previa no disponible</p>
-                  <a href={`/pdfs/${content.file}`} download className="bg-emerald-500 text-slate-950 px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl shadow-emerald-500/20">Descargar para leer</a>
+                <div className="flex flex-col items-center justify-center h-full p-10 text-center space-y-6">
+                  <div className="w-20 h-20 bg-slate-800 rounded-3xl flex items-center justify-center">
+                     <AlertTriangle className="w-10 h-10 text-amber-500" />
+                  </div>
+                  <div className="space-y-4">
+                    <p className="text-slate-100 text-sm font-bold uppercase tracking-widest leading-relaxed">Tu dispositivo no permite la vista previa directa</p>
+                    <a href={`/pdfs/${content.file}`} download className="bg-emerald-500 text-slate-950 px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl shadow-emerald-500/20 inline-block">Descargar para leer</a>
+                  </div>
                 </div>
               </object>
             </div>
@@ -174,22 +180,22 @@ const ModuleDetail = () => {
                   <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest block">Lectura</span>
                   <button onClick={() => { setIsFullScreen(true); setShowControls(false); }} className="w-full h-12 flex items-center justify-center space-x-2 rounded-xl border border-emerald-500/20 bg-emerald-500/10 text-emerald-400 active:bg-emerald-500 active:text-slate-950 transition-all">
                     <Maximize2 className="w-4 h-4" />
-                    <span className="text-[10px] font-black uppercase tracking-widest">Pantalla Completa</span>
+                    <span className="text-[10px] font-black uppercase tracking-widest">Reader Completo</span>
                   </button>
                 </div>
                 <div className="space-y-3">
                   <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest block">Audio guía</span>
                   <button onClick={handleReadAloud} className={`w-full h-12 flex items-center justify-center space-x-2 rounded-xl border transition-all ${isSpeaking ? 'bg-emerald-500 border-emerald-400 text-slate-950' : 'bg-slate-950 border-slate-800 text-slate-400'}`}>
-                    {isSpeaking ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+                    {isSpeaking ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4 group-hover:animate-bounce" />}
                     <span className="text-[10px] font-black uppercase tracking-widest">{isSpeaking ? 'Detener' : 'Escuchar'}</span>
                   </button>
                 </div>
               </div>
-              <div className="pt-2 border-t border-slate-800/50">
-                <a href={`/pdfs/${content.file}`} download className="w-full h-12 flex items-center justify-center space-x-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 active:scale-95 transition-all text-[10px] font-black uppercase tracking-widest">
-                  <Download className="w-4 h-4" />
-                  <span>Descargar PDF offline</span>
-                </a>
+              <div className="pt-2 border-t border-slate-800/50 text-center">
+                 <a href={`/pdfs/${content.file}`} download className="inline-flex items-center space-x-2 text-[10px] font-black text-slate-600 uppercase tracking-widest hover:text-emerald-400 transition-colors">
+                    <Download className="w-3.5 h-3.5" />
+                    <span>Descargar para leer offline</span>
+                 </a>
               </div>
             </motion.div>
           )}
@@ -214,65 +220,81 @@ const ModuleDetail = () => {
           </div>
         </div>
 
-        <div className="pt-4 border-t border-slate-900">
-          <div className="relative min-h-[75vh] rounded-[2.5rem] overflow-hidden bg-slate-900/20 border border-slate-800/50 shadow-2xl group">
-            <div className="absolute top-4 left-4 z-10 flex items-center space-x-2 bg-slate-950/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-slate-800/50 pointer-events-none">
-               <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-               <span className="text-[8px] font-black text-slate-300 uppercase tracking-widest">Lector Premium</span>
+        {/* Start Reading Hero Action */}
+        <div className="pt-4">
+          <div className="glass-card p-10 rounded-[3rem] text-center space-y-10 relative overflow-hidden bg-slate-900/40">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 blur-[80px] -z-10 translate-x-1/2 -translate-y-1/2" />
+            
+            <div className="w-24 h-24 bg-emerald-500/10 rounded-[2.5rem] flex items-center justify-center mx-auto border border-emerald-500/20 relative group">
+               <div className="absolute inset-0 bg-emerald-500/10 rounded-[2.5rem] animate-ping" />
+               <Book className="w-12 h-12 text-emerald-500 relative z-10" />
             </div>
-            <button onClick={() => setIsFullScreen(true)} className="absolute top-4 right-4 z-20 w-10 h-10 rounded-xl bg-emerald-500 text-slate-950 flex items-center justify-center shadow-lg active:scale-90 transition-all opacity-0 group-hover:opacity-100 md:opacity-100">
-              <Maximize2 className="w-5 h-5" />
+
+            <div className="space-y-3">
+              <h3 className="text-2xl font-black text-slate-50 uppercase tracking-tight leading-none">Material Preparado</h3>
+              <p className="text-slate-500 text-sm font-bold leading-relaxed max-w-[240px] mx-auto">
+                Toca abajo para abrir el lector de alto rendimiento en pantalla completa.
+              </p>
+            </div>
+
+            <button 
+              onClick={() => setIsFullScreen(true)}
+              className="w-full bg-emerald-500 text-slate-950 font-black py-7 rounded-[2rem] shadow-2xl shadow-emerald-500/30 active:scale-95 transition-all text-sm uppercase tracking-[0.2em] flex items-center justify-center space-x-3"
+            >
+              <Maximize2 className="w-5 h-5 fill-slate-950/20" />
+              <span>Empezar Lectura</span>
             </button>
-            <object data={`/pdfs/${content.file}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`} type="application/pdf" className="w-full h-[75vh] border-0" title="Protocolo Visión Clara">
-              <div className="flex flex-col items-center justify-center h-full p-10 text-center space-y-6">
-                <div className="w-20 h-20 bg-slate-900 rounded-full flex items-center justify-center">
-                  <BookOpen className="w-10 h-10 text-emerald-500" />
+          </div>
+        </div>
+
+        {/* Action Tray Below */}
+        <div className="space-y-10 bg-gradient-to-at from-slate-950 via-slate-950/90 to-transparent">
+          <div className="flex flex-col items-center space-y-4">
+             <div className="w-12 h-1 bg-slate-900 rounded-full" />
+             <p className="text-[10px] font-black text-slate-700 uppercase tracking-[0.3em]">Acciones Finales</p>
+          </div>
+
+          <div className="glass-card p-10 rounded-[3rem] text-center space-y-8 relative overflow-hidden border border-slate-800/30">
+            <div className="w-20 h-20 bg-emerald-500/10 rounded-[2rem] flex items-center justify-center mx-auto border border-emerald-500/20">
+               <Trophy className="w-10 h-10 text-emerald-500 drop-shadow-lg" />
+            </div>
+
+            <div className="space-y-2">
+               <h4 className="text-xl font-black text-slate-50 uppercase tracking-tight">Fin de la Lección</h4>
+               <p className="text-slate-500 text-xs font-bold leading-relaxed uppercase tracking-wider">¿Ya completaste este módulo?</p>
+            </div>
+
+            {!isCompleted ? (
+               <button 
+                onClick={() => markModuleComplete(id)}
+                className="w-full bg-slate-900 text-emerald-400 border border-emerald-500/20 font-black py-6 rounded-2xl shadow-xl active:scale-95 transition-all text-xs uppercase tracking-[0.2em] flex items-center justify-center space-x-3"
+              >
+                <CheckCircle className="w-5 h-5 fill-emerald-400/10" />
+                <span>Marcar como Completado</span>
+              </button>
+            ) : (
+              <div className="space-y-4">
+                <div className="w-full bg-emerald-500/10 text-emerald-400 font-black py-5 rounded-2xl border border-emerald-500/30 flex items-center justify-center space-x-3 text-xs uppercase tracking-widest shadow-inner">
+                  <CheckCircle className="w-5 h-5 fill-emerald-500/20" />
+                  <span>Módulo Certificado</span>
                 </div>
-                <div className="space-y-4">
-                  <p className="text-slate-300 text-sm font-black uppercase tracking-widest">Visualización en curso...</p>
-                  <button onClick={() => setIsFullScreen(true)} className="bg-emerald-500 text-slate-950 px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-xl shadow-emerald-500/20">
-                    Abrir Lector Completo
+                {nextModules[id] && (
+                   <button 
+                    onClick={() => {
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                      navigate(`/modulo/${nextModules[id]}`);
+                    }}
+                    className="w-full bg-slate-50 text-slate-950 font-black py-6 rounded-2xl shadow-xl active:scale-95 transition-all text-xs uppercase tracking-[0.2em] flex items-center justify-center space-x-3 group"
+                  >
+                    <span>Siguiente Módulo</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </button>
-                </div>
-              </div>
-            </object>
-            <div className="p-8 pb-12 space-y-10 bg-gradient-to-t from-slate-950 via-slate-950/90 to-transparent">
-              <div className="flex flex-col items-center space-y-4">
-                 <div className="w-12 h-1 bg-slate-800 rounded-full" />
-                 <p className="text-[10px] font-black text-slate-600 uppercase tracking-[0.3em]">Fin de la sección principal</p>
-              </div>
-              <div className="glass-card p-10 rounded-[3rem] text-center space-y-8 relative overflow-hidden bg-slate-900/40">
-                <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-500/5 blur-[60px] -z-10 translate-x-1/2 -translate-y-1/2" />
-                <div className="w-20 h-20 bg-emerald-500/10 rounded-[2rem] flex items-center justify-center mx-auto border border-emerald-500/20">
-                   <Trophy className="w-10 h-10 text-emerald-500 drop-shadow-lg" />
-                </div>
-                <div className="space-y-2">
-                   <h4 className="text-xl font-black text-slate-50 uppercase tracking-tight">¡Lección Finalizada!</h4>
-                   <p className="text-slate-500 text-xs font-bold leading-relaxed uppercase tracking-wider">Has completado el {content.title}</p>
-                </div>
-                {!isCompleted ? (
-                   <button onClick={() => markModuleComplete(id)} className="w-full bg-emerald-500 text-slate-950 font-black py-6 rounded-2xl shadow-2xl shadow-emerald-500/20 active:scale-95 transition-all text-xs uppercase tracking-[0.2em] flex items-center justify-center space-x-3">
-                    <CheckCircle className="w-5 h-5 fill-slate-950/20" />
-                    <span>Marcar Módulo Completado</span>
-                  </button>
-                ) : (
-                  <div className="space-y-4">
-                    <div className="w-full bg-slate-800/50 text-emerald-400 font-black py-5 rounded-2xl border border-emerald-500/20 flex items-center justify-center space-x-3 text-xs uppercase tracking-widest shadow-inner">
-                      <CheckCircle className="w-5 h-5 fill-emerald-500/10" />
-                      <span>Certificado como leído</span>
-                    </div>
-                    {nextModules[id] && (
-                       <button onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); navigate(`/modulo/${nextModules[id]}`); }} className="w-full bg-slate-50 text-slate-950 font-black py-6 rounded-2xl shadow-xl active:scale-95 transition-all text-xs uppercase tracking-[0.2em] flex items-center justify-center space-x-3 group">
-                        <span>Siguiente Lección</span>
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                      </button>
-                    )}
-                  </div>
                 )}
-                <div className="pt-4">
-                   <Link to="/protocolo" className="text-[10px] text-slate-600 font-black uppercase tracking-widest hover:text-slate-400 transition-colors">Volver al índice do método</Link>
-                </div>
               </div>
+            )}
+            
+            <div className="pt-4">
+               <Link to="/protocolo" className="text-[10px] text-slate-600 font-black uppercase tracking-widest hover:text-slate-300 transition-colors">Volver al índice del método</Link>
             </div>
           </div>
         </div>
