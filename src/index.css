@@ -122,3 +122,11 @@ main {
 :focus:not(:focus-visible) {
   outline: none;
 }
+/* Hide Vercel Toolbar (April Fools joke) */
+vercel-toolbar, 
+#vercel-toolbar-container, 
+[data-vercel-toolbar] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
