@@ -58,10 +58,10 @@ const ProtocoloIndex = () => {
     { id: 'ROOT', title: '2. Causa Raíz', summary: 'Por qué tu visión ha fallado y cómo este protocolo ataca el problema real.', icon: Eye, readTime: 5 },
     { id: 'COMP', title: '3. Compuestos Esenciales', summary: 'La lista exacta de ingredientes naturales purificados para tu salud ocular.', icon: FlaskConical, readTime: 10, isFeatured: true },
     { id: 'DOSIS', title: '4. Dosis y Preparación', summary: 'Cómo combinar los elementos para maximizar la absorción biológica.', icon: Sparkles, readTime: 6 },
-    { id: 'RUTINA', title: '5. Rutina de 7 Segundos', summary: 'El ritual exacto que debes seguir cada noche para ver resultados reales.', icon: Clock, readTime: 4, isFeatured: true },
+    { id: 'RUTINA', title: '5. Ritual de 7 Segundos', summary: 'El ritual exacto que debes seguir cada noche para ver resultados reales.', icon: Clock, readTime: 4, isFeatured: true },
     { id: 'ERROR', title: '6. Errores Comunes', summary: 'Lo que debes evitar para no bloquear el proceso de restauración.', icon: AlertTriangle, readTime: 4 },
-    { id: 'WEEK', title: '7. Semana a Semana', summary: 'Qué esperar en los próximos 30 días del protocolo.', icon: Star, readTime: 3 },
-    { id: 'TRUST', title: '8. Aviso Importante', summary: 'Recomendaciones de seguridad y uso responsable del método.', icon: HelpCircle, readTime: 2 }
+    { id: 'WEEK', title: '7. Cronograma Semanal', summary: 'Qué esperar en los próximos 30 días del protocolo y cómo medir resultados.', icon: Star, readTime: 3 },
+    { id: 'TRUST', title: '8. Aviso Importante', summary: 'Recomendaciones de seguridad e uso responsable del método.', icon: HelpCircle, readTime: 2 }
   ];
 
   return (

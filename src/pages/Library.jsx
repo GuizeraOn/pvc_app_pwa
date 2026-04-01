@@ -103,6 +103,9 @@ const Library = () => {
       case 'COMP': return '3. Los 7 Compuestos Maestros';
       case 'DOSIS': return '4. Dosis y Tiempos de Oro';
       case 'RUTINA': return '5. Ritual de 7 Segundos';
+      case 'ERROR': return '6. Errores Comunes';
+      case 'WEEK': return '7. Cronograma Semanal';
+      case 'TRUST': return '8. Aviso Importante';
       default: return 'Módulo sin título';
     }
   };
@@ -148,8 +151,38 @@ const Library = () => {
       <div className="grid grid-cols-2 gap-4">
         <ResourceCard title="Ingredientes" icon={FlaskConical} color="emerald" to="/modulo/COMP" />
         <ResourceCard title="Instalar App" icon={Smartphone} color="blue" onClick={openInstallModal} />
-        <ResourceCard title="Descargar PDF" icon={Download} color="amber" to="/biblioteca" />
-        <ResourceCard title="Aviso Legal" icon={Info} color="slate" to="/biblioteca" />
+        <ResourceCard title="Guía Completa" icon={Download} color="amber" to="/modulo/INTRO" />
+        <ResourceCard title="Aviso Legal" icon={Info} color="slate" to="/modulo/TRUST" />
+      </div>
+
+      {/* PDF Downloads Section */}
+      <div className="space-y-4">
+        <div className="flex items-center space-x-2 px-1">
+           <Download className="w-4 h-4 text-amber-500" />
+           <h3 className="text-xs font-black text-slate-50 uppercase tracking-widest leading-none">Descargar Materiales</h3>
+        </div>
+        <div className="grid grid-cols-1 gap-2">
+          {[
+            { id: 'INTRO', file: '1_Introduccion_al_Protocolo_Vision_Clara.pdf' },
+            { id: 'ROOT', file: '2_La_Causa_Raiz_Obstruccion_Ocular.pdf' },
+            { id: 'COMP', file: '3_Compuestos_Esenciales_para_la_Vision.pdf' },
+          ].map((doc) => (
+            <a 
+              key={doc.id}
+              href={`/pdfs/${doc.file}`} 
+              download 
+              className="flex items-center justify-between p-4 glass-card rounded-2xl hover:bg-amber-500/10 hover:border-amber-500/20 transition-all group"
+            >
+              <div className="flex items-center space-x-3">
+                <div className="w-8 h-8 bg-amber-500/10 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Download className="w-4 h-4 text-amber-500" />
+                </div>
+                <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest">{getModuleTitle(doc.id)}</span>
+              </div>
+              <ChevronRight className="w-4 h-4 text-slate-700" />
+            </a>
+          ))}
+        </div>
       </div>
 
       {/* Bookmarks Section */}

@@ -43,12 +43,15 @@ const ModuleDetail = () => {
 
   const getModuleContent = (id) => {
     switch (id) {
-      case 'INTRO': return { title: 'Introducción al Método', icon: BookOpen, summary: 'Bienvenido al viaje hacia una visión restaurada. Conoce las bases biológicas y el compromiso necesario para el éxito.', time: 2 };
-      case 'ROOT': return { title: 'Causa Raíz Re-descubierta', icon: Eye, summary: 'Por qué la medicina tradicional ignora el factor principal del deterioro ocular y cómo este protocolo lo resuelve.', time: 5 };
-      case 'COMP': return { title: 'Los 7 Compuestos Maestros', icon: FlaskConical, summary: 'La lista exacta y pura de los ingredientes naturales que tu retina necesita para regenerarse.', time: 10 };
-      case 'DOSIS': return { title: 'Dosis y Tiempos de Oro', icon: Sparkles, summary: 'La precisión es vital. Aprende cómo y cuándo combinar los compuestos para máxima absorción.', time: 6 };
-      case 'RUTINA': return { title: 'Ritual de 7 Segundos', icon: Clock, summary: 'El paso final y más importante. El ritual nocturno que sella el proceso de restauración diaria.', time: 4 };
-      default: return { title: 'Contenido del Protocolo', icon: BookOpen, summary: 'Explora la guía detallada para tu salud ocular.', time: 5 };
+      case 'INTRO': return { title: '1. Introducción al Protocolo', icon: BookOpen, summary: 'Bienvenido al viaje hacia una visión restaurada. Conoce las bases biológicas y el compromiso necesario para el éxito.', time: 2, file: '1_Introduccion_al_Protocolo_Vision_Clara.pdf' };
+      case 'ROOT': return { title: '2. Causa Raíz: Obstrucción', icon: Eye, summary: 'Por qué la medicina tradicional ignora el factor principal del deterioro ocular y cómo este protocolo lo resuelve.', time: 5, file: '2_La_Causa_Raiz_Obstruccion_Ocular.pdf' };
+      case 'COMP': return { title: '3. Compuestos Esenciales', icon: FlaskConical, summary: 'La lista exacta y pura de los ingredientes naturales que tu retina necesita para regenerarse.', time: 10, file: '3_Compuestos_Esenciales_para_la_Vision.pdf' };
+      case 'DOSIS': return { title: '4. Dosis y Preparación', icon: Sparkles, summary: 'La precisión es vital. Aprende cómo y cuándo combinar los compuestos para máxima absorción.', time: 6, file: '4_Dosis_Exactas_y_Preparacion_Biologica.pdf' };
+      case 'RUTINA': return { title: '5. Ritual de 7 Segundos', icon: Clock, summary: 'El paso final y más importante. El ritual nocturno que sella el proceso de restauración diaria.', time: 4, file: '5_El_Ritual_Nocturno_de_7_Segundos.pdf' };
+      case 'ERROR': return { title: '6. Errores Comunes', icon: AlertTriangle, summary: 'Lo que debes evitar para no bloquear el proceso de restauración de tu visión.', time: 4, file: '6_Errores_Comunes_que_Bloquean_la_Restauracion.pdf' };
+      case 'WEEK': return { title: '7. Cronograma Semanal', icon: Trophy, summary: 'Qué esperar en los próximos 30 días del protocolo y cómo medir tus resultados.', time: 3, file: '7_Cronograma_Semana_a_Semana_30_Dias.pdf' };
+      case 'TRUST': return { title: '8. Aviso de Seguridad', icon: Info, summary: 'Recomendaciones importantes para un uso seguro y responsable del protocolo.', time: 2, file: '8_Aviso_Importante_y_Recomendaciones_de_Seguridad.pdf' };
+      default: return { title: 'Contenido del Protocolo', icon: BookOpen, summary: 'Explora la guía detallada para tu salud ocular.', time: 5, file: '1_Introduccion_al_Protocolo_Vision_Clara.pdf' };
     }
   };
 
@@ -58,23 +61,10 @@ const ModuleDetail = () => {
   useEffect(() => {
     setIsFloatingButtonHidden(true);
     
-    // Restore scroll position
-    const savedPos = scrollPositions[id] || 0;
-    if (savedPos > 0) {
-      setTimeout(() => {
-        window.scrollTo({ top: savedPos, behavior: 'smooth' });
-      }, 500);
-    }
-
     const handleScroll = () => {
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress = (window.scrollY / totalHeight) * 100;
       setScrollPercentage(progress);
-      
-      // Save position periodically (every 100px)
-      if (Math.abs(window.scrollY - (scrollPositions[id] || 0)) > 200) {
-        saveScrollPosition(id, window.scrollY);
-      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -103,7 +93,9 @@ const ModuleDetail = () => {
     'ROOT': 'COMP',
     'COMP': 'DOSIS',
     'DOSIS': 'RUTINA',
-    'RUTINA': 'ERROR'
+    'RUTINA': 'ERROR',
+    'ERROR': 'WEEK',
+    'WEEK': 'TRUST'
   };
 
   return (
@@ -158,12 +150,16 @@ const ModuleDetail = () => {
               className="glass-card p-6 rounded-[2rem] border-emerald-500/20 grid grid-cols-2 gap-4"
             >
               <div className="space-y-3">
-                <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest block">Tamaño de letra</span>
-                <div className="flex bg-slate-950/50 p-1 rounded-xl border border-slate-800">
-                  <button onClick={() => setFontSize('normal')} className={`flex-1 py-2 rounded-lg text-xs font-black transition-all ${fontSize === 'normal' ? 'bg-emerald-500 text-slate-950' : 'text-slate-500'}`}>A</button>
-                  <button onClick={() => setFontSize('large')} className={`flex-1 py-2 rounded-lg text-sm font-black transition-all ${fontSize === 'large' ? 'bg-emerald-500 text-slate-950' : 'text-slate-500'}`}>A+</button>
-                  <button onClick={() => setFontSize('xl')} className={`flex-1 py-2 rounded-lg text-base font-black transition-all ${fontSize === 'xl' ? 'bg-emerald-500 text-slate-950' : 'text-slate-500'}`}>A++</button>
-                </div>
+                <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest block">Lectura</span>
+                <a 
+                  href={`/pdfs/${content.file}`} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-full flex items-center justify-center space-x-2 py-3 rounded-xl border border-emerald-500/20 bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500 hover:text-slate-950 transition-all"
+                >
+                  <Maximize2 className="w-4 h-4" />
+                  <span className="text-[10px] font-black uppercase tracking-widest">Ver Pantalla Completa</span>
+                </a>
               </div>
               <div className="space-y-3">
                 <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest block">Audio guía</span>
@@ -185,10 +181,10 @@ const ModuleDetail = () => {
              <div className="bg-emerald-500/10 p-1.5 rounded-lg border border-emerald-500/20">
                 <content.icon className="w-4 h-4" />
              </div>
-             <span className="text-[11px] font-black uppercase tracking-[0.2em]">Módulo {id}</span>
+             <span className="text-[11px] font-black uppercase tracking-[0.2em]">{id}</span>
           </div>
           
-          <h2 className={`font-black tracking-tight text-slate-50 leading-[1] uppercase ${fontSize === 'large' ? 'text-4xl' : fontSize === 'xl' ? 'text-5xl' : 'text-3xl'}`}>
+          <h2 className="text-3xl font-black tracking-tight text-slate-50 leading-[1] uppercase">
             {content.title}
           </h2>
 
@@ -197,16 +193,10 @@ const ModuleDetail = () => {
                 <Clock className="w-4 h-4 text-emerald-500/50" />
                 <span>{content.time} minutos de lectura</span>
              </div>
-             {scrollPercentage > 5 && (
-               <div className="flex items-center space-x-1.5 text-emerald-400 text-[10px] font-black uppercase tracking-widest">
-                  <History className="w-4 h-4" />
-                  <span>{Math.round(scrollPercentage)}% leído</span>
-               </div>
-             )}
           </div>
 
           <div className="p-6 bg-slate-900/30 border-l-4 border-emerald-500 rounded-r-3xl italic">
-             <p className={`text-slate-400 leading-relaxed ${fontSize === 'large' ? 'text-lg' : fontSize === 'xl' ? 'text-xl' : 'text-sm'}`}>
+             <p className="text-slate-400 leading-relaxed text-sm">
                "{content.summary}"
              </p>
           </div>
@@ -214,28 +204,40 @@ const ModuleDetail = () => {
 
         {/* Native Reading Canvas */}
         <div className="pt-4 border-t border-slate-900">
-          <div className="relative min-h-[60vh] rounded-[2.5rem] overflow-hidden bg-slate-950/20 border border-slate-900 group">
+          <div className="relative min-h-[75vh] rounded-[2.5rem] overflow-hidden bg-slate-950 border border-slate-800/50 shadow-2xl">
             {/* Visual reassurance - Native feel */}
-            <div className="absolute top-0 right-0 p-6 z-20 opacity-20 group-hover:opacity-100 transition-opacity">
-               <Maximize2 className="w-5 h-5 text-slate-700" />
+            <div className="absolute top-4 left-4 z-10 flex items-center space-x-2 bg-slate-900/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-slate-700/50">
+               <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+               <span className="text-[8px] font-black text-slate-300 uppercase tracking-widest">Modo Lectura Activo</span>
             </div>
 
-            {/* Content Iframe with Scroll Guard */}
-            <iframe 
-              src={`https://gamma.app/embed/${id}_PAGE`}
-              className="w-full h-[70vh] border-0 z-10 pointer-events-auto"
+            {/* Content Display */}
+            <object 
+              data={`/pdfs/${content.file}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+              type="application/pdf"
+              className="w-full h-[75vh] border-0"
               title="Protocolo Visión Clara"
-            />
+            >
+              <div className="flex flex-col items-center justify-center h-full p-10 text-center space-y-6">
+                <div className="w-20 h-20 bg-slate-900 rounded-full flex items-center justify-center">
+                  <BookOpen className="w-10 h-10 text-emerald-500" />
+                </div>
+                <div className="space-y-2">
+                  <p className="text-slate-400 text-sm font-bold">Tu navegador no puede procesar el PDF directamente.</p>
+                  <a href={`/pdfs/${content.file}`} download className="text-emerald-400 text-[10px] font-black uppercase tracking-widest underline decoration-2 underline-offset-4">Haz clic aquí para descargar y leer</a>
+                </div>
+              </div>
+            </object>
             
             {/* Native Scroll Anchor */}
-            <div className="p-8 pb-12 space-y-10">
+            <div className="p-8 pb-12 space-y-10 bg-gradient-to-t from-slate-950 via-slate-950/90 to-transparent">
               <div className="flex flex-col items-center space-y-4">
                  <div className="w-12 h-1 bg-slate-800 rounded-full" />
                  <p className="text-[10px] font-black text-slate-600 uppercase tracking-[0.3em]">Fin de la sección principal</p>
               </div>
 
               {/* Completion Action Card */}
-              <div className="glass-card p-10 rounded-[3rem] text-center space-y-8 relative overflow-hidden">
+              <div className="glass-card p-10 rounded-[3rem] text-center space-y-8 relative overflow-hidden bg-slate-900/40">
                 <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-500/5 blur-[60px] -z-10 translate-x-1/2 -translate-y-1/2" />
                 
                 <div className="w-20 h-20 bg-emerald-500/10 rounded-[2rem] flex items-center justify-center mx-auto border border-emerald-500/20">
