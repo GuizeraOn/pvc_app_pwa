@@ -130,6 +130,28 @@ const Dashboard = () => {
         </Link>
       </div>
 
+      {/* Premium Content Shortcut */}
+      <div className="space-y-4">
+        <h3 className="text-xs font-black text-slate-50 uppercase tracking-widest pl-1 leading-none text-emerald-400">Contenido Premium</h3>
+        <Link to="/premium" className="group relative block">
+          <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-500 to-amber-500 rounded-[2.2rem] opacity-20 group-hover:opacity-40 transition blur-sm" />
+          <div className="relative glass-card p-5 rounded-[2.2rem] bg-slate-900 transition-all border border-slate-700/30 flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <div className="w-12 h-12 bg-emerald-500/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Zap className="w-6 h-6 text-emerald-500 fill-emerald-500/10" />
+              </div>
+              <div className="space-y-0.5">
+                <span className="text-[9px] font-black text-emerald-400 uppercase tracking-widest">Rescate Hepático</span>
+                <p className="text-sm font-black text-slate-50 uppercase tracking-tight">Acelerado</p>
+              </div>
+            </div>
+            <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-emerald-500 group-hover:text-slate-950 transition-all">
+              <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </div>
+          </div>
+        </Link>
+      </div>
+
       <footer className="pt-10 flex flex-col items-center space-y-4 opacity-50 pb-4">
         <div className="flex items-center space-x-6">
            <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />

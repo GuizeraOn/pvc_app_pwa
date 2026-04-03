@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocolo Visión Clara - Acceso Oficial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-navy: #0F172A;
+            --primary-blue: #1E3A8A;
+            --accent-cyan: #06B6D4;
+            --accent-gold: #D97706;
+            --bg-offwhite: #F8FAFC;
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #E2E8F0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            color: var(--text-main);
+            padding: 20px 0;
+        }
+
+        /* A4 Page Formatting - Strict 1 Page */
+        .page {
+            width: 210mm;
+            height: 297mm;
+            padding: 15mm 20mm; /* Reduced padding */
+            background: var(--white);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; /* Strict cut-off to prevent 2nd page */
+        }
+
+        @page {
+            size: A4;
+            margin: 0; /* Important: No browser margins */
+        }
+
+        /* Header Area */
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            font-size: 12px;
+            letter-spacing: 0.2em;
+            font-weight: 900;
+            color: var(--primary-navy);
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--accent-cyan);
+            display: inline-block;
+            padding-bottom: 2px;
+        }
+
+        /* Titles */
+        h1 {
+            font-size: 28px; /* Balanced size */
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--primary-navy);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        /* Content */
+        .content {
+            font-size: 16px;
+            line-height: 1.45;
+            color: var(--text-main);
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 12px;
+        }
+
+        strong {
+            font-weight: 800;
+            color: var(--primary-blue);
+        }
+
+        /* Steps Box */
+        .steps {
+            background-color: var(--bg-offwhite);
+            border-radius: 10px;
+            padding: 18px 24px;
+            margin-bottom: 15px;
+            border: 1px solid #E2E8F0;
+        }
+
+        .steps-title {
+            font-weight: 900;
+            font-size: 17px;
+            margin-bottom: 10px;
+            color: var(--primary-navy);
+            display: flex;
+            align-items: center;
+        }
+
+        .steps-title::before {
+            content: "";
+            display: inline-block;
+            width: 5px;
+            height: 18px;
+            background-color: var(--accent-cyan);
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+
+        ol {
+            list-style-position: inside;
+        }
+
+        ol li {
+            margin-bottom: 6px;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        /* Button */
+        .cta-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-blue);
+            color: white !important;
+            padding: 16px 40px;
+            font-size: 18px;
+            font-weight: 900;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 8px 15px rgba(30, 58, 138, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .support-text {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        /* Sticky Footer at the bottom of the A4 */
+        .footer {
+            margin-top: auto;
+            border-top: 1px solid #E2E8F0;
+            padding-top: 15px;
+            text-align: center;
+        }
+
+        .legal {
+            font-size: 10px;
+            color: var(--text-muted);
+            line-height: 1.4;
+            max-width: 95%;
+            margin: 0 auto;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 210mm) {
+            body { padding: 0; background-color: var(--white); }
+            .page { width: 100vw; height: auto; min-height: 100vh; box-shadow: none; padding: 30px 20px; overflow: visible; }
+            h1 { font-size: 24px; }
+            .btn { width: 100%; }
+        }
+
+        /* Print Hacks */
+        @media print {
+            body { background: none; padding: 0; }
+            .page { 
+                box-shadow: none; 
+                margin: 0; 
+                width: 210mm; 
+                height: 296mm; /* Slightly less than 297 to stay safe */
+                padding: 15mm 20mm;
+            }
+            .btn {
+                background-color: #1E3A8A !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page">
+        <div class="header">
+            <span class="logo">PROTOCOLO VISI&Oacute;N CLARA&trade;</span>
+        </div>
+
+        <h1>&iexcl;Felicidades y Bienvenido(a) a tu Nueva Rutina de Bienestar!</h1>
+
+        <div class="content">
+            <p>Hola, y felicidades por tomar esta importante decisi&oacute;n.</p>
+            <p>Al asegurar tu acceso al <strong>Protocolo Visi&oacute;n Clara</strong>, has dado el paso m&aacute;s importante hacia el cuidado natural de tus ojos, tu higiene visual e estilo de vida saludable.</p>
+            <p>Sabemos lo frustrante que pode ser a fadiga visual e a sensa&ccedil;&atilde;o de que seus olhos n&atilde;o s&atilde;o os mesmos. Por isso, consolidamos os melhores h&aacute;bitos, guias nutricionais e rotinas di&aacute;rias em uma plataforma digital exclusiva.</p>
+            <p>Tu material completo <strong>NO</strong> se encuentra en un simple documento aburrido. Hemos preparado una <strong>Aplicaci&oacute;n Privada</strong> donde podr&aacute;s ver tus gu&iacute;as e protocolos desde la comodidad de tu celular.</p>
+        </div>
+
+        <div class="steps">
+            <div class="steps-title">Sigue estos 3 simples pasos para comenzar:</div>
+            <ol>
+                <li><strong>Toca el bot&oacute;n azul de abajo</strong> para ir a nuestra plataforma segura.</li>
+                <li>Ingresa con el <strong>correo electr&oacute;nico</strong> de tu compra.</li>
+                <li>&iexcl;Explora tu plan y comienza tu primer d&iacute;a!</li>
+            </ol>
+        </div>
+
+        <div class="cta-container">
+            <a href="https://pvcapp.vercel.app/login" class="btn" target="_blank">ACCEDER A MI PROTOCOLO AHORA</a>
+            <div class="support-text">
+                &iquest;Tienes problemas? Escr&iacute;benos a soporte y te ajudaremos.
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="legal">
+                <strong>Aviso Legal y de Salud:</strong> El Protocolo Visi&oacute;n Clara es una gu&iacute;a educativa e informativa enfocada en bienestar general. No sustituye la consulta o tratamiento de un m&eacute;dico oftalm&oacute;logo profesional. Consulta a tu especialista antes de realizar cambios.
+                <br><br>
+                &copy; 2026 Protocolo Visi&oacute;n Clara. Todos los derechos reservados.
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

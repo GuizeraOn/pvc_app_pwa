@@ -8,7 +8,8 @@ import {
   ChevronLeft,
   Settings,
   MessageCircle,
-  WifiOff
+  WifiOff,
+  Zap
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
@@ -56,7 +57,7 @@ const Layout = () => {
   }, []);
 
   // Back button visibility
-  const showBack = location.pathname !== '/dashboard' && !['/protocolo', '/tracker', '/biblioteca', '/perfil'].includes(location.pathname);
+  const showBack = location.pathname !== '/dashboard' && !['/protocolo', '/tracker', '/biblioteca', '/premium', '/perfil'].includes(location.pathname);
 
   return (
     <div className="flex-1 flex flex-col min-h-screen relative overflow-hidden">
@@ -115,6 +116,7 @@ const Layout = () => {
       <nav className="fixed bottom-0 left-0 right-0 max-w-md mx-auto h-20 bg-slate-900/90 backdrop-blur-3xl border-t border-slate-800/50 flex items-center justify-around px-4 pb-2 pt-0 z-[70] shadow-[0_-10px_30px_rgba(0,0,0,0.5)]">
         <NavItem to="/dashboard" icon={Home} label="Inicio" />
         <NavItem to="/protocolo" icon={BookOpen} label="Método" />
+        <NavItem to="/premium" icon={Zap} label="Hepático" />
         <NavItem to="/tracker" icon={Target} label="Progreso" />
         <NavItem to="/biblioteca" icon={LibraryIcon} label="Guías" />
         <NavItem to="/perfil" icon={User} label="Perfil" />

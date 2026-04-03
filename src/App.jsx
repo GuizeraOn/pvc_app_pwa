@@ -7,6 +7,7 @@ import ModuleDetail from './pages/ModuleDetail';
 import ProtocoloIndex from './pages/ProtocoloIndex';
 import Tracker from './pages/Tracker';
 import Library from './pages/Library';
+import RescateHepatico from './pages/RescateHepatico';
 import Profile from './pages/Profile';
 import Onboarding from './pages/Onboarding';
 import Layout from './components/Layout';
@@ -54,6 +55,7 @@ const AnimatedRoutes = () => {
           <Route path="modulo/:id" element={<ModuleDetail />} />
           <Route path="tracker" element={<Tracker />} />
           <Route path="biblioteca" element={<Library />} />
+          <Route path="premium" element={<RescateHepatico />} />
           <Route path="perfil" element={<Profile />} />
         </Route>
 
